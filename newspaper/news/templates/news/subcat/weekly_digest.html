@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Digest</title>
+</head>
+
+<body>
+  <h1>News Portal еженедельные новости</h1>
+  {% for category in category_object %}
+  <p>В категории: <strong>"{{ category }}"</strong></p>
+  <p>there are new posts</p>
+  {% for post in post_object %}
+  {% for post_cat in post.postCategory.all %}
+  {% if post_cat == category %}
+  <a href="http://127.0.0.1:8000{{ post.get_absolute_url }}"><h2> {{ post.headingPost }} </h2></a>
+  <p>by {{ post.author }}</p>
+  <p>{{ post.preview }}</p>
+  {% endif %} {% endfor %} {% endfor %} {% endfor %}
+</body>
+</html>
