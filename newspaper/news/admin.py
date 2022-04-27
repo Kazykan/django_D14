@@ -1,12 +1,14 @@
 from django.contrib import admin
 from .models import Post, Author, PostCategory, Category, CategorySub, Comment
+from modeltranslation.admin import TranslationAdmin
 
 
 class CategoryInline(admin.TabularInline):
     model = Post.postCategory.through
 
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(TranslationAdmin):
+    model = Post
     list_display = ('id', 'choicePost', 'headingPost', 'preview', 'ratingPost', 'timeInCreation', 'author')
     list_display_links = ('id', 'headingPost')
     search_fields = ('headingPost', 'author',)
